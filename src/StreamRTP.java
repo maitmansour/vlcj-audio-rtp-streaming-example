@@ -37,7 +37,20 @@ public class StreamRTP {
 			throw new Exception("Error During construction, please check NativeDiscovery");
 		}
     }
+   
+    @Override
+    public void finalize() {
+        // Stop processing.
+        mediaListPlayer.stop();
+        // Finish program.
+        mediaListPlayer.release();
+        factory.release();
+    }
     
+   /**
+    * Main execution
+    * @param args
+    */
     public static void main(String[] args) {
     	try {
 			StreamRTP rtp = new StreamRTP();
@@ -47,6 +60,7 @@ public class StreamRTP {
 		}
     }
 
+    
     /**
      * 
      * @param serverAddress
