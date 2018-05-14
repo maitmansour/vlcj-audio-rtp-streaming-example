@@ -1,11 +1,11 @@
-###Features
+### Features
 
 - Streaming over RTP using [VLCJ](https://github.com/caprica/vlcj "VLCJ")
 - Independent Class
 - All librairies are included
 - tested on Eclipse Oxygen - JAVA 8
 
-###Author
+### Author
 
 - Mohamed AIT MANSOUR
 
