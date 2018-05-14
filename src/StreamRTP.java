@@ -54,6 +54,7 @@ public class StreamRTP {
     public static void main(String[] args) {
     	try {
 			StreamRTP rtp = new StreamRTP();
+            start("YOUR_LOCAL_IP_HERE", 5000, "music/sample.mp3");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
