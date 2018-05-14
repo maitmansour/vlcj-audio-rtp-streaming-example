@@ -14,11 +14,9 @@ import uk.co.caprica.vlcj.player.list.MediaListPlayerMode;
  *
  */
 public class StreamRTP {
-    static MediaPlayerFactory factory;
-    static MediaListPlayer mediaListPlayer;
-    static MediaList playList;
-    String lienstream;
-    int stream = 0;
+    private MediaPlayerFactory factory;
+    private MediaListPlayer mediaListPlayer;
+    private MediaList playList;
     
     public StreamRTP() throws Exception {
         boolean found = new NativeDiscovery().discover();
@@ -46,29 +44,14 @@ public class StreamRTP {
         mediaListPlayer.release();
         factory.release();
     }
-    
-   /**
-    * Main execution
-    * @param args
-    */
-    public static void main(String[] args) {
-    	try {
-			StreamRTP rtp = new StreamRTP();
-            start("YOUR_LOCAL_IP_HERE", 5000, "music/sample.mp3");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-
-    
+        
     /**
      * 
      * @param serverAddress
      * @param serverPort
      * @return  mediaOptions for rtp stream wih vlc
      */
-    private static String formatRtpStream(String serverAddress, int serverPort) {
+    private String formatRtpStream(String serverAddress, int serverPort) {
         StringBuilder sb = new StringBuilder(60);
         sb.append(":sout=#rtp{dst=");
         sb.append(serverAddress);
@@ -87,7 +70,7 @@ public class StreamRTP {
      * @param musique
      * @throws Exception
      */
-    private static void start(String address, int port, String music) throws Exception {
+     void start(String address, int port, String music) throws Exception {
         mediaListPlayer = factory.newMediaListPlayer();
         String mediaOptions = formatRtpStream(address, port);
         playList.addMedia("music/" + music, mediaOptions);
