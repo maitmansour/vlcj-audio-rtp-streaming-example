@@ -1,3 +1,7 @@
+import uk.co.caprica.vlcj.medialist.MediaList;
+import uk.co.caprica.vlcj.player.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.list.MediaListPlayer;
+
 /**
  * 
  * RTP Streaming using VLCJ
@@ -5,7 +9,12 @@
  *
  */
 public class StreamRTP {
-
+    static MediaPlayerFactory factory;
+    static MediaListPlayer mediaListPlayer;
+    static MediaList playList;
+    String lienstream;
+    int stream = 0;
+    
     public static void main(String[] args) {
         System.out.println("Fisrt Class");
 
