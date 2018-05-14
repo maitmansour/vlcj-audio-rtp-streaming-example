@@ -1,6 +1,10 @@
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.binding.internal.libvlc_media_t;
+import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.medialist.MediaList;
 import uk.co.caprica.vlcj.player.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.list.MediaListPlayer;
+import uk.co.caprica.vlcj.player.list.MediaListPlayerEventAdapter;
 import uk.co.caprica.vlcj.player.list.MediaListPlayerMode;
 
 /**
@@ -16,9 +20,31 @@ public class StreamRTP {
     String lienstream;
     int stream = 0;
     
+    public StreamRTP() throws Exception {
+        boolean found = new NativeDiscovery().discover();
+        if (found) {
+        	System.out.println(LibVlc.INSTANCE.libvlc_get_version());
+            factory = new MediaPlayerFactory();
+            mediaListPlayer = factory.newMediaListPlayer();
+            mediaListPlayer.addMediaListPlayerEventListener(new MediaListPlayerEventAdapter() {
+                @Override
+                public void nextItem(MediaListPlayer mediaListPlayer, libvlc_media_t item, String itemMrl) {
+                    System.out.println("Playing next item: " + itemMrl + " (" + item + ")");
+                }
+            });
+            playList = factory.newMediaList();
+		}else {
+			throw new Exception("Error During construction, please check NativeDiscovery");
+		}
+    }
+    
     public static void main(String[] args) {
-        System.out.println("Fisrt Class");
-
+    	try {
+			StreamRTP rtp = new StreamRTP();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**
