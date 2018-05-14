@@ -1,5 +1,6 @@
 ### Features
 
+- Java Application
 - Streaming over RTP using [VLCJ](https://github.com/caprica/vlcj "VLCJ")
 - Independent Class
 - All librairies are included
